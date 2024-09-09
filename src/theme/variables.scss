@@ -1,0 +1,20 @@
+// For information on how to create your own theme, please see:
+// http://ionicframework.com/docs/theming/
+
+:root {
+  --ion-color-primary: #6EC76E;
+  --ion-color-primary-contrast: #fff;
+
+  --primary-color: #3c763c;
+
+  --navbar-height: calc(4.5rem + var(--ion-safe-area-bottom));
+
+  ion-content::part(background) {
+    background: #3c763c;
+  }
+
+  ion-button {
+    --background-activated: #3c763c;
+    --background-focused: #3c763c;
+  }
+}

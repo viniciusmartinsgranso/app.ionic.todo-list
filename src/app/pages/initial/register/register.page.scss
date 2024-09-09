@@ -1,0 +1,45 @@
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  background: var(--primary-color);
+  height: 15vh;
+  color: white;
+
+  label {
+    width: 70vw;
+    text-align: center;
+  }
+
+  &--button {
+    position: absolute;
+    left: 0;
+    --background: #3c763c;
+  }
+}
+
+.register {
+  background: #ffffff;
+  color: black;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2rem;
+  justify-content: space-evenly;
+
+  &--info {
+    padding: 2rem;
+    background: var(--ion-color-primary);
+    border-radius: 2rem;
+    color: white;
+    font-weight: bold;
+  }
+
+  &--buttons {
+    display: flex;
+    flex-direction: column;
+  }
+}

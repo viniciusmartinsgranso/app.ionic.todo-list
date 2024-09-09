@@ -1,0 +1,23 @@
+.login {
+  background: #ffffff;
+  color: black;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2rem;
+  justify-content: space-evenly;
+
+  &--info {
+    padding: 2rem;
+    background: var(--ion-color-primary);
+    border-radius: 2rem;
+    color: white;
+    font-weight: bold;
+  }
+
+  &--buttons {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,23 @@
+:host {
+  background: #fff;
+  color: black;
+}
+
+.header {
+  height: 4rem;
+}
+
+.task {
+
+  &--form {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+
+ion-datetime::part(background) {
+  --background: #fff;
+}

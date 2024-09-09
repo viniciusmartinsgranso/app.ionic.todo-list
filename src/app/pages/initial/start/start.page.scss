@@ -1,0 +1,40 @@
+:host {
+  justify-content: space-evenly;
+  padding: 2rem;
+  background: var(--primary-color);
+  color: white;
+}
+
+.start {
+  width: 100%;
+  text-align: center;
+  background: rgba(96, 204, 96, 0.77);
+  border-radius: 2rem;
+  padding: 1rem;
+  box-shadow: 0 0 5px 6px rgba(0, 0, 0, 0.12);
+
+  h1 {
+    width: 55vw;
+    text-align: left;
+  }
+
+  img {
+    width: 10rem;
+  }
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 2rem;
+}
+
+ion-button {
+  --background: rgba(96, 204, 96, 0.77);
+  --background-hover: rgb(67, 148, 67);
+  --background-activated: rgb(67, 148, 67);
+  --color: #fff;
+
+  --box-shadow: 0 0 5px 6px rgba(0, 0, 0, 0.12);
+}

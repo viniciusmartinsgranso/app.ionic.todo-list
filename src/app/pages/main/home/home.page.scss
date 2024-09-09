@@ -1,0 +1,30 @@
+ion-toolbar {
+  --background: var(--primary-color);
+
+  ion-segment {
+    --background: #54dc98;
+  }
+}
+
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table {
+  padding-top: 1rem;
+  border-top: .1rem solid white;
+
+  overflow-y: scroll;
+  text-align: center;
+
+  td, tr, th {
+    padding: .7rem;
+    font-weight: lighter;
+  }
+
+  td {
+    border-top: 0.01rem solid gray;
+  }
+}

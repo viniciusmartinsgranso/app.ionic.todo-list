@@ -1,0 +1,135 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-segment value="home">
+      <ion-segment-button (click)="setCurrentNavbar(NavbarEnum.HOME)" value="home">
+        <ion-icon name="home"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button *ngIf="isAdmin; else userRef" (click)="setCurrentNavbar(NavbarEnum.PROFILE_ADMIN)"
+                          value="profile">
+        <ion-icon name="person"></ion-icon>
+      </ion-segment-button>
+
+      <ng-template #userRef>
+        <ion-segment-button (click)="setCurrentNavbar(NavbarEnum.PROFILE)" value="profile">
+          <ion-icon name="person"></ion-icon>
+        </ion-segment-button>
+      </ng-template>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="currentNavbar === NavbarEnum.HOME; else isAdmin ? userList : profile"
+             class="ion-padding"
+             [fullscreen]="true">
+  <div class="home">
+    <h3>A lista das tarefas</h3>
+    <ion-buttons>
+
+      <ion-select (ionChange)="filterStatus($event)"
+                  [value]="null"
+      >
+        <ion-select-option [value]="null">Remover</ion-select-option>
+        <ion-select-option [value]="taskStatus.TODO">{{ translatedTaskStatus[taskStatus.TODO] }}</ion-select-option>
+        <ion-select-option [value]="taskStatus.PROGRESS">{{ translatedTaskStatus[taskStatus.PROGRESS] }}
+        </ion-select-option>
+        <ion-select-option [value]="taskStatus.DONE">{{ translatedTaskStatus[taskStatus.DONE] }}</ion-select-option>
+      </ion-select>
+
+      <ion-button shape="round" (click)="onReload()">
+        <ion-icon slot="icon-only" name="refresh"></ion-icon>
+      </ion-button>
+
+      <ion-button shape="round" (click)="redirectToTask()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
+
+  <div class="table">
+    <table>
+      <tr>
+        <th>Título</th>
+        <th>Data de término</th>
+        <th>Usuário</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.title }}</td>
+        <td>{{ task.endDate | date: 'dd/MM/yyyy HH:mm': '' : 'pt-BR' }}</td>
+        <td>{{ task.user.name }}</td>
+        <td>{{ translatedTaskStatus[task.status] }}</td>
+        <td>
+          <ion-button color="warning" size="small" [routerLink]="['/task/', task.id]"
+          >Editar
+          </ion-button>
+          <ion-button color="danger" size="small" (click)="deleteTask(task.id)">Excluir</ion-button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</ion-content>
+
+<ng-template #profile>
+
+  <ion-content [fullscreen]="true">
+    <app-profile [user]="user"></app-profile>
+  </ion-content>
+</ng-template>
+
+<ng-template #userList>
+  <ion-content class="ion-padding" [fullscreen]="true">
+    <div class="home">
+      <h3>A lista das Usuários</h3>
+      <ion-buttons>
+
+        <ion-select (ionChange)="filterUsers($event)"
+                    [value]="null"
+        >
+          <ion-select-option [value]="null">Remover</ion-select-option>
+          <ion-select-option [value]="roleStatus.USER">{{ translatedRole[roleStatus.USER] }}</ion-select-option>
+          <ion-select-option [value]="roleStatus.ADMIN">{{ translatedRole[roleStatus.ADMIN] }}
+          </ion-select-option>
+        </ion-select>
+
+        <ion-button shape="round" (click)="onReload()">
+          <ion-icon slot="icon-only" name="refresh"></ion-icon>
+        </ion-button>
+
+        <ion-button shape="round" [routerLink]="['/user']">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+        <ion-button shape="round" (click)="logout()">
+          <ion-icon slot="icon-only" name="exit"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+
+    <div class="table">
+      <table>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Permissão</th>
+          <th>Data de criação</th>
+          <th>Ações</th>
+        </tr>
+        <tr *ngFor="let user of users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.createdAt | date: 'dd/MM/yyyy HH:mm': '' : 'pt-BR' }}</td>
+          <td>{{ translatedRole[user.role] }}</td>
+          <td>
+            <ion-button color="warning" size="small" [routerLink]="['/user/', user.id]"
+            >Editar
+            </ion-button>
+            <ion-button color="danger" size="small" (click)="deleteUser(user.id)">Excluir</ion-button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </ion-content>
+
+</ng-template>

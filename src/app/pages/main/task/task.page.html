@@ -1,0 +1,55 @@
+<ion-header class="header">
+  <ion-button class="header--button" shape="round" (click)="redirectToHome()">
+    <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+  </ion-button>
+  <label>Crie a sua tarefa</label>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formGroup" class="task--form">
+    <div class="input">
+      <label>Título</label>
+      <ion-input formControlName="title"></ion-input>
+    </div>
+
+    <div class="input">
+      <label>Descrição</label>
+      <ion-textarea formControlName="description"
+                    [autoGrow]="true"
+      ></ion-textarea>
+    </div>
+
+    <div class="input" *ngIf="isAdmin">
+      <label>Usuário</label>
+      <ion-select
+          placeholder="Selecione o Usuário"
+          (ionChange)="userTaskChange($event)"
+      >
+        <ion-select-option *ngFor="let user of users" [value]="user">{{ user.name }}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <label>Data de vencimento</label>
+    <ion-datetime presentation="date-time"
+                  [value]="minDate.toISOString()"
+                  formControlName="endDate"
+                  color="white"
+                  [min]="minDate.toISOString()"
+                  [preferWheel]="true"></ion-datetime>
+
+    <div class="input">
+      <label>Status da tarefa</label>
+      <ion-select
+          placeholder="Selecione o status"
+          (ionChange)="statusTaskChange($event)"
+          [value]="StatusEnum.TODO"
+      >
+        <ion-select-option [value]="StatusEnum.TODO">{{ translatedStatus[StatusEnum.TODO] }}</ion-select-option>
+        <ion-select-option [value]="StatusEnum.PROGRESS">{{ translatedStatus[StatusEnum.PROGRESS] }}</ion-select-option>
+        <ion-select-option [value]="StatusEnum.DONE">{{ translatedStatus[StatusEnum.DONE] }}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <ion-button [disabled]="formGroup.invalid" (click)="onSubmit()">Enviar</ion-button>
+  </form>
+</ion-content>

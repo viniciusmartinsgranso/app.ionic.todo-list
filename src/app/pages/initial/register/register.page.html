@@ -1,0 +1,46 @@
+<div class="header">
+  <ion-button class="header--button" shape="round" (click)="redirectToStart()">
+    <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+  </ion-button>
+  <label>Obrigado por nos escolher! Vamos criar uma conta</label>
+</div>
+
+<div class="register">
+  <div class="register--info">
+    <h2>Primeiro, precisamos de algumas informações para te registrar-mos na nossa plataforma.</h2>
+  </div>
+  <div class="input">
+    <ion-input labelPlacement="stacked"
+               placeholder="Informe seu nome"
+               type="text"
+               [(ngModel)]="registerPayload.name"
+               label="Nome">
+      <ion-icon slot="start" name="person" aria-hidden="true"></ion-icon>
+    </ion-input>
+  </div>
+
+  <div class="input">
+    <ion-input labelPlacement="stacked"
+               placeholder="Informe seu e-mail"
+               type="email"
+               [(ngModel)]="registerPayload.email"
+               label="Email">
+      <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
+    </ion-input>
+  </div>
+
+  <div class="input">
+    <ion-input label="Senha" labelPlacement="stacked"
+               type="password"
+               [(ngModel)]="registerPayload.password"
+               placeholder="Informe sua senha">
+      <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+    </ion-input>
+  </div>
+
+  <div class="register--buttons">
+    <ion-button (click)="onSubmit()" [disabled]="!canRegister()">Criar conta</ion-button>
+    <ion-label>Ainda não possui uma conta? Clique <a>aqui</a> e crie.</ion-label>
+  </div>
+</div>

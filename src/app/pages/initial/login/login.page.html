@@ -1,0 +1,37 @@
+<div class="header">
+  <ion-button class="header--button" shape="round" (click)="redirectToStart()">
+    <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+  </ion-button>
+  <label>Bem vindo de volta!</label>
+</div>
+
+<div class="login">
+  <div class="login--info">
+    <h2 style="text-decoration: underline">Que bom te ter de volta!</h2>
+    <h2>Realize o login para organizar as suas tarefas e aumentar a sua produtividade.</h2>
+  </div>
+  <div class="input">
+    <ion-input labelPlacement="stacked"
+               placeholder="Informe seu e-mail"
+               type="email"
+               [(ngModel)]="loginPayload.email"
+               label="Email">
+      <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
+    </ion-input>
+  </div>
+
+  <div class="input">
+    <ion-input label="Senha" labelPlacement="stacked"
+               type="password"
+               [(ngModel)]="loginPayload.password"
+               placeholder="Informe sua senha">
+      <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+    </ion-input>
+  </div>
+
+  <div class="login--buttons">
+    <ion-button [disabled]="!canLogin()" (click)="onSubmit()">Entrar</ion-button>
+    <ion-label>Ainda não possui uma conta? Clique <a (click)="redirectToRegister()">aqui</a> e crie.</ion-label>
+  </div>
+</div>

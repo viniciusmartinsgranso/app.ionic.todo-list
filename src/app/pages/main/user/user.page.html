@@ -1,0 +1,43 @@
+<ion-header class="header">
+  <ion-button class="header--button" shape="round" (click)="redirectToHome()">
+    <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+  </ion-button>
+  <label>Crie o usuário</label>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="formGroup" class="user--form">
+    <div class="input">
+      <label>Nome:</label>
+      <ion-input formControlName="name"></ion-input>
+    </div>
+
+    <div class="input">
+      <label>Email:</label>
+      <ion-input formControlName="email"></ion-input>
+    </div>
+
+    <div class="input">
+      <label>Permissão:</label>
+      <ion-select
+          placeholder="Selecione a permissão:"
+          (ionChange)="roleChange($event)"
+      >
+        <ion-select-option [value]="role.USER">{{ translatedRole[role.USER] }}</ion-select-option>
+        <ion-select-option [value]="role.ADMIN">{{ translatedRole[role.ADMIN] }}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <div class="input">
+      <ion-input label="Senha" labelPlacement="stacked"
+                 type="password"
+                 formControlName="password"
+                 placeholder="Informe a senha">
+        <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+      </ion-input>
+    </div>
+
+    <ion-button [disabled]="formGroup.invalid" (click)="onSubmit()">Enviar</ion-button>
+  </form>
+</ion-content>

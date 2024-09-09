@@ -1,0 +1,36 @@
+<ion-content [fullscreen]="true"
+             class="ion-padding"
+>
+  <div class="profile">
+    <h3>Abaixo, as suas informações</h3>
+      <ion-button shape="round" (click)="isEdit = !isEdit">
+        <ion-icon slot="icon-only" name="pencil"></ion-icon>
+      </ion-button>
+  </div>
+
+  <div class="profile-form">
+    <div class="input">
+      <label>Nome:</label>
+      <ion-input [(ngModel)]="user.name" [class.disabled]="!isEdit"></ion-input>
+    </div>
+
+    <div class="input">
+      <label>Email:</label>
+      <ion-input [(ngModel)]="user.email" [class.disabled]="!isEdit"></ion-input>
+    </div>
+
+    <div class="input" *ngIf="user.role === roles.ADMIN">
+      <label>Permissão:</label>
+      <ion-select [value]="user.role" [(ngModel)]="user.role">
+        <ion-select-option [value]="roles.ADMIN"></ion-select-option>
+        <ion-select-option [value]="roles.USER"></ion-select-option>
+      </ion-select>
+    </div>
+
+    <ion-button expand="block" (click)="editUser()">Salvar</ion-button>
+    <ion-button expand="block"
+                color="danger"
+                (click)="logout()"
+    >Sair</ion-button>
+  </div>
+</ion-content>

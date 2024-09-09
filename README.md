@@ -4,6 +4,8 @@ Este é um aplicativo desenvolvido em Angular com Ionic para gerenciar usuários
 
 ## Funcionalidades
 
+- **Banco de Dados**: O banco de dados para essa aplicação é o localHost do próprio navegador.
+
 ### Cadastro de Usuários
 
 - **Criar**: Adicione novos usuários ao sistema.

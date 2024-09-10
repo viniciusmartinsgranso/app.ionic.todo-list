@@ -9,8 +9,10 @@ export class TaskService {
   private readonly localStorageKey: string = 'tasks';
 
   public getTasks(): TaskProxy[] {
-    const tasks = localStorage.getItem(this.localStorageKey);
-    return tasks ? JSON.parse(tasks) : [];
+    const allTasks = localStorage.getItem(this.localStorageKey);
+    const tasks: TaskProxy[] = allTasks ? JSON.parse(allTasks) : [];
+
+    return tasks.sort((a: TaskProxy, b: TaskProxy) => new Date(a.endDate).getTime() - new Date(b.endDate).getTime());
   }
 
   public getTaskById(id: number): TaskProxy | undefined {
